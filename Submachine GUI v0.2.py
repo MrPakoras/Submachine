@@ -1,3 +1,5 @@
+# v0.2 - Simplified version without scrollable frame
+
 import os, time, re, mimetypes, math, threading, tkinter
 from tkinter import *
 from tkinter import filedialog, colorchooser, ttk
@@ -11,7 +13,7 @@ from tkvideo import tkvideo
 bgcolour = '#1d1c2c'
 
 master = Tk()
-master.title('Submachine GUI v0.1')
+master.title('Submachine GUI v0.2')
 master.geometry('1280x720')
 # master.resizable(False, False)
 master.configure(background=bgcolour)
@@ -137,8 +139,38 @@ subslabel.grid(row=0, column=0, sticky='w')
 # 	babutton.config(state='normal')
 # 	babutton.grid(row=1, column=1, pady=5)
 
-subscanvas = Canvas(subsframe, bg='#d7ceff')
+subscanvas = Canvas(subsframe, bg='#d7ceff') # Canvas for subtitle buttons
 subscanvas.grid(row=1, column=0, sticky='w')
+
+addsubsbutton = Button(subsframe, text='Add', bg='#5a49a4', fg='#d7ceff', activebackground='#5a49a4', activeforeground='#d7ceff') # Add subtitles
+addsubsbutton.grid(row=2, column=0, sticky='we')
+
+# Settings
+settingslabel = Label(subsframe, text='Settings:', bg=bgcolour, fg='#d7ceff', font=('Helvetica', 14))
+settingslabel.grid(row=3, column=0, sticky='w')
+
+# Sub options dropdown
+solabel = Label(subsframe, text='Sub Option:', bg=bgcolour, fg='#d7ceff', font=('Helvetica', 14))
+solabel.grid(row=4, column=0, sticky='w')
+
+sovar = StringVar()
+soddstyle = ttk.Style() # Style options for dropdown
+soddstyle.configure('TCombobox', background='#1d1c2c', foreground='#000')
+
+sodd = ttk.Combobox(subsframe, width=15, textvariable=sovar, style='TCombobox')
+sodd['values'] = ()
+sodd.grid(row=4, column=1)
+sodd.state(['disabled','readonly']) # Sets dropdown on non edit mode
+
+# sodd = # Subtitle option dropdown
+# sodd.grid(row=4, column=1, sticky='w')
+
+
+
+
+
+
+
 
 
 ## Video preview and controls
